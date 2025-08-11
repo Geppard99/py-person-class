@@ -7,6 +7,7 @@ class Person:
 
 def create_person_list(people_dict: list) -> list:
     person_list = [Person(person['name'], person['age']) for person in people_dict]
+    Person.people.clear()
 
     for person in people_dict:
         current_person = Person.people[person["name"]]
