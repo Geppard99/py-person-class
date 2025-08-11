@@ -6,21 +6,17 @@ class Person:
         Person.people[self.name] = self
 
 def create_person_list(people_dict: list) -> list:
-    person_list = []
-    for person in people_dict:
-        new_person = Person(person['name'], person['age'])
-        person_list.append(new_person)
+    person_list = [Person(person['name'], person['age']) for person in people_dict]
 
     for person in people_dict:
-        person_name = person["name"]
-        current_person = Person.people[person_name]
+        current_person = Person.people[person["name"]]
 
-        if "wife" in person and person["wife"] is not None:
-            wife_name = person["wife"]
+        wife_name = person.get("wife")
+        if wife_name is not None:
             current_person.wife = Person.people[wife_name]
 
-        if "husband" in person and person["husband"] is not None:
-            husband_name = person["husband"]
+        husband_name = person.get("husband")
+        if husband_name is not None:
             current_person.husband = Person.people[husband_name]
 
     return person_list
